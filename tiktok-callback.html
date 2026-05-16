@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TikTok OAuth Callback - AutoTube Tennis247</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page legal">
+    <h1>TikTok OAuth Callback</h1>
+    <p class="muted">This page is used by the private AutoTube Tennis247 tool to complete TikTok authorization.</p>
+
+    <section class="card">
+      <h2>Authorization Code</h2>
+      <p>If authorization succeeded, copy the code below and paste it into the local verification script.</p>
+      <pre id="code" style="white-space: pre-wrap; word-break: break-all; padding: 16px; border: 1px solid var(--border); border-radius: 16px; background: rgba(0,0,0,.25);">Reading callback...</pre>
+      <p id="state" class="muted"></p>
+      <p id="error" style="color: #ff9aa8;"></p>
+    </section>
+
+    <p><a href="index.html">Back to home</a></p>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const state = params.get('state');
+    const error = params.get('error');
+    const errorDescription = params.get('error_description');
+
+    document.getElementById('code').textContent = code || 'No code found in callback URL.';
+    document.getElementById('state').textContent = state ? `State: ${state}` : '';
+    document.getElementById('error').textContent = error ? `Error: ${error} ${errorDescription || ''}` : '';
+  </script>
+</body>
+</html>
